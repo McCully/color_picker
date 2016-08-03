@@ -1,21 +1,27 @@
 $(document).ready(function() {
-  alert("Brace yourselves, colors are coming")
-  $("#color").on("click" , game);
-});
-  var colors ["red" , "green" , "yellow" , "blue" , "black" , "purple"];
+  $('#start').on('click', message);
+  $("#color").on("click", '.box' , game);
+
+  var colors = ["red" , "green" , "yellow" , "blue" , "black" , "purple"];
   var randColor;
-  $(".color").append('<div id = "color red"></div>');
-  $(".color").append('<div id = "color green"></div>');
-  $(".color").append('<div id = "color yellow"></div>');
-  $(".color").append('<div id = "color blue"></div>');
-  $(".color").append('<div id = "color black"></div>');
-  $(".color").append('<div id = "color purple"></div>');
+  $("#color").append('<div class = "box" id = "red"></div>');
+  $("#color").append('<div class = "box" id = "green"></div>');
+  $("#color").append('<div class = "box" id = "yellow"></div>');
+  $("#color").append('<div class = "box" id = "blue"></div>');
+  $("#color").append('<div class = "box" id = "black"></div>');
+  $("#color").append('<div class = "box" id = "purple"></div>');
 
-function colorChooser(){
-var index = randomNumber(0 , 5);
-randColor = colors[index];
-}
+  function colorChooser(){
+    var index = randomNumber(0 , 5);
+    randColor = colors[index];
+  }
 
+  function message(){
+
+    colorChooser();
+    $('#messages').html("Prepare yourselves, the color is coming: " + randColor );
+
+  }
 
 
   function randomNumber(min, max){
@@ -23,11 +29,13 @@ randColor = colors[index];
   };
 
 
-function game(){
-  var thisColor = $(this).attr('id');
-  if (thisColor == randColor){
-    $('#correct').append("<p>Way to go!</p>")
-  } else {
-    $('#incorrect').append("<p>You'll get it next time!</p>")
-  }
-}
+  function game(){
+    console.log('hello');
+    var thisColor = $(this).attr('id');
+    if (thisColor == randColor){
+      $('#correct').append("<p>Way to go!</p>").fadeOut(3000);
+    } else {
+      $('#incorrect').append("<p>You'll get it next time!</p>").fadeOut(3000);
+      }
+  };
+});
